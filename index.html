@@ -1,1 +1,186 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Albums of The Tabernacle Choir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .album-cover {
+            transition: all 0.3s ease;
+            aspect-ratio: 1/1;
+        }
+        .album-cover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background-color: rgba(17, 24, 39, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-gray-700 min-h-screen py-12">
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold font-san-serif text-white text-center mb-2">The Albums of The Tabernacle Choir</h1>
+        <h2 class="text-sm font-semibold text-white text-center mb-12">Recorded while Melinda Baros served from 2013 - 2029</h2>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <!-- Album Cover HTML Elements -->
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/homeward-bound-deluxe/1452362723" target="_blank">
+                    <img src="album-covers/2013.1 - homeward bound.jpg" alt="Homeward Bound (Deluxe)" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/he-is-risen-ep/1458537525" target="_blank">
+                    <img src="album-covers/2014.1 - He Is Risen.jpg" alt="He Is Risen" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/let-the-season-in/1488958803" target="_blank">
+                    <img src="album-covers/2014.2 - Let the Season In.jpg" alt="Let the Season In" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/keep-christmas-with-you/1456135725" target="_blank">
+                    <img src="album-covers/2015 - Keep Christmas With You.jpg" alt="Keep Christmas With You" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/handels-messiah/1484691782" target="_blank">
+                    <img src="album-covers/2016 - Handel_s Messiah.jpg" alt="Handel's Messiah" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/mormon-tabernacle-choir-friends/1377600297" target="_blank">
+                    <img src="album-covers/2017.1 - Mormon Tabernacle Choir and Friends.jpg" alt="Mormon Tabernacle Choir & Friends" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/o-come-little-children/1299778939" target="_blank">
+                    <img src="album-covers/2017.2 - O Come Little Children.jpg" alt="O Come Little Children" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/tree-of-life-sacred-music-of-mack-wilberg/1360340812" target="_blank">
+                    <img src="album-covers/2018.1 - Tree of Life- Sacred Music of Mack Wilberg.jpg" alt="Tree of Life: Sacred Music of Mack Wilberg" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/a-merry-little-christmas/1436966782" target="_blank">
+                    <img src="album-covers/2018.2 - A Merry Little Christmas.jpg" alt="A Merry Little Christmas" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/let-us-all-press-on-hymns-of-praise-and-inspiration/1452638314" target="_blank">
+                    <img src="album-covers/2019.1 - Let Us All Press On- Hymns of Praise and Inspiration.jpg" alt="Let Us All Press On: Hymns of Praise and Inspiration" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/slow-down-live-at-temple-square-single/1477151120" target="_blank">
+                    <img src="album-covers/2019.2 - Slow Down (LIve at Temple Square) - Single.jpg" alt="Slow Down (LIve at Temple Square) - Single" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/angels-among-us-feat-kristin-chenoweth/1481073836" target="_blank">
+                    <img src="album-covers/2019.3 - Angels Amoung Us (feat. Kristin Chenoweth).jpeg" alt="Angels Amoung Us (feat. Kristin Chenoweth)" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/when-you-believe-a-night-at-the-movies-ep/1508010866" target="_blank">
+                    <img src="album-covers/2020.1 - When You Believe.jpg" alt="When You Believe: A Night at the Movie" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/christmas-day-in-the-morning/1533425129" target="_blank">
+                    <img src="album-covers/2020.2 - Christmas Day in the Morning.jpeg" alt="Christmas Day in the Morning" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/christmas-best/1588155473" target="_blank">
+                    <img src="album-covers/2021 - Christmas Best.jpg" alt="Christmas Best" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/o-holy-night-christmas-with-the-tabernacle-choir/1644992978" target="_blank">
+                    <img src="album-covers/2022.1 - O Holy NIght- Christmas with The Tabernacle Choir & Orchestra at Temple Square.jpg" alt="O Holy NIght: Christmas with The Tabernacle Choir & Orchestra at Temple Square" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/winter-morning/1649932789" target="_blank">
+                    <img src="album-covers/2022.2 - Winter Morning.jpg" alt="Winter Morning" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/a-lullaby-single/1696981627" target="_blank">
+                    <img src="album-covers/2023.1 - A Lullaby.jpeg" alt="A Lullaby" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/season-of-light-christmas-with-the-tabernacle/1709195450" target="_blank">
+                    <img src="album-covers/2023.2 - Season of Light- Christmas with The Tabernacle Choir & Orchestra at Temple Square.jpg" alt="Season of Light: Christmas with The Tabernacle Choir & Orchestra at Temple Square" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/christmas-songs/1707085480" target="_blank">
+                    <img src="album-covers/2023.3 - Christmas Songs.jpg" alt="Christmas Songs with David Foster & Katharine McPhee" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/the-mission-how-great-thou-art-single/1691815424" target="_blank">
+                    <img src="album-covers/2023.4 - The Mission and How Great Thou Art.jpeg" alt="The Mission / How Great Thou Art" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/wayfaring-stranger-arr-mack-wilberg-single/1677857039" target="_blank">
+                    <img src="album-covers/2023.5 - Wayfaring Stranger.jpeg" alt="Wayfaring Stranger" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/tuya-es-la-gloria-arr-for-choir-orchestra-solo-cello/1702718072" target="_blank">
+                    <img src="album-covers/2023.6 - Tuya Es La Gloria.jpeg" alt="Tuya Es La Gloria" class="w-full h-full object-cover">
+                </a>
+            </div>
+
+            <div class="album-cover rounded-lg overflow-hidden shadow-lg">
+                <a href="https://music.apple.com/us/album/joy-christmas-with-the-tabernacle-choir-and/1770619444" target="_blank">
+                    <img src="album-covers/2024 - Joy! Christmas with The Tabernacle Choir & Orchestra at Temple Square.jpg" alt="Joy! Christmas with The Tabernacle Choir & Orchestra at Temple Square" class="w-full h-full object-cover">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section - Separated from main content -->
+    <footer class="footer w-full mt-16 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <img src="album-covers/tab-choir.jpg" alt="The Tabernacle Choir at Temple Square" class="mx-auto max-w-xs">
+        </div>
+    </footer>
+</body>
+</html>
