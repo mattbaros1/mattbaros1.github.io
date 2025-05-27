@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Albums of The Tabernacle Choir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .album-cover {
+            transition: all 0.3s ease;
+            aspect-ratio: 1/1;
+        }
+        .album-cover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 10;
+            position: relative;
+        }
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background-color: rgba(17, 24, 39, 0.8);
+        }
+        .loading-skeleton {
+            background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .error-state {
+            background-color: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-700 min-h-screen py-12">
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold font-sans text-white text-center mb-2">The Albums of The Tabernacle Choir</h1>
+        <h2 class="text-sm font-semibold text-white text-center mb-12">Recorded while Melinda Baros served from 2013 - 2029</h2>
+        
+        <div id="loading-message" class="text-white text-center mb-8">
+            Loading albums...
+        </div>
+        
+        <div id="album-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <!-- Albums will be populated here -->
+        </div>
+    </div>
+
+    <footer class="footer w-full mt-16 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <!-- Footer content -->
+        </div>
+    </footer>
+
+    <script>
+        // List of Apple Music album URLs
+        const albumUrls = [
+            "https://music.apple.com/us/album/homeward-bound-deluxe/1452362723",
+            "https://music.apple.com/us/album/he-is-risen-ep/1458537525",
+            "https://music.apple.com/us/album/let-the-season-in/1488958803",
+            "https://music.apple.com/us/album/keep-christmas-with-you/1456135725",
+            "https://music.apple.com/us/album/handels-messiah/1484691782",
+            "https://music.apple.com/us/album/mormon-tabernacle-choir-friends/1377600297",
+            "https://music.apple.com/us/album/o-come-little-children/1299778939",
+            "https://music.apple.com/us/album/tree-of-life-sacred-music-of-mack-wilberg/1360340812",
+            "https://music.apple.com/us/album/a-merry-little-christmas/1436966782",
+            "https://music.apple.com/us/album/let-us-all-press-on-hymns-of-praise-and-inspiration/1452638314",
+            "https://music.apple.com/us/album/slow-down-live-at-temple-square-single/1477151120",
+            "https://music.apple.com/us/album/angels-among-us-feat-kristin-chenoweth/1481073836",
+            "https://music.apple.com/us/album/when-you-believe-a-night-at-the-movies-ep/1508010866",
+            "https://music.apple.com/us/album/christmas-day-in-the-morning/1533425129",
+            "https://music.apple.com/us/album/christmas-best/1588155473",
+            "https://music.apple.com/us/album/o-holy-night-christmas-with-the-tabernacle-choir/1644992978",
+            "https://music.apple.com/us/album/winter-morning/1649932789",
+            "https://music.apple.com/us/album/a-lullaby-single/1696981627",
+            "https://music.apple.com/us/album/season-of-light-christmas-with-the-tabernacle/1709195450",
+            "https://music.apple.com/us/album/christmas-songs/1707085480",
+            "https://music.apple.com/us/album/the-mission-how-great-thou-art-single/1691815424",
+            "https://music.apple.com/us/album/wayfaring-stranger-arr-mack-wilberg-single/1677857039",
+            "https://music.apple.com/us/album/tuya-es-la-gloria-arr-for-choir-orchestra-solo-cello/1702718072",
+            "https://music.apple.com/us/album/joy-christmas-with-the-tabernacle-choir-and/1770619444"
+        ];
+
+        // Function to extract album ID from Apple Music URL
+        function extractAlbumId(url) {
+            const match = url.match(/\/album\/[^\/]+\/(\d+)/);
+            return match ? match[1] : null;
+        }
+
+        // Function to fetch album data from iTunes API
+        async function fetchAlbumData(albumId) {
+            try {
+                const response = await fetch(`https://itunes.apple.com/lookup?id=${albumId}&entity=album`);
+                const data = await response.json();
+                
+                if (data.results && data.results.length > 0) {
+                    const album = data.results[0];
+                    return {
+                        title: album.collectionName,
+                        artist: album.artistName,
+                        artwork: album.artworkUrl100.replace('100x100', '600x600'), // Get higher resolution
+                        url: album.collectionViewUrl
+                    };
+                }
+                return null;
+            } catch (error) {
+                console.error('Error fetching album data:', error);
+                return null;
+            }
+        }
+
+        // Function to create album element
+        function createAlbumElement(albumData, originalUrl) {
+            const albumDiv = document.createElement('div');
+            albumDiv.className = 'album-cover rounded-lg overflow-hidden shadow-lg';
+            
+            if (albumData) {
+                albumDiv.innerHTML = `
+                    <a href="${originalUrl}" target="_blank" title="${albumData.title}">
+                        <img src="${albumData.artwork}" 
+                             alt="${albumData.title}" 
+                             class="w-full h-full object-cover"
+                             loading="lazy">
+                    </a>
+                `;
+            } else {
+                // Error state
+                albumDiv.innerHTML = `
+                    <div class="error-state w-full h-full">
+                        <span>Failed to load</span>
+                    </div>
+                `;
+            }
+            
+            return albumDiv;
+        }
+
+        // Function to create loading skeleton
+        function createLoadingSkeleton() {
+            const skeletonDiv = document.createElement('div');
+            skeletonDiv.className = 'album-cover rounded-lg overflow-hidden shadow-lg loading-skeleton';
+            return skeletonDiv;
+        }
+
+        // Main function to load and display albums
+        async function loadAlbums() {
+            const albumGrid = document.getElementById('album-grid');
+            const loadingMessage = document.getElementById('loading-message');
+            
+            // Create loading skeletons
+            albumUrls.forEach(() => {
+                albumGrid.appendChild(createLoadingSkeleton());
+            });
+
+            const albumPromises = albumUrls.map(async (url, index) => {
+                const albumId = extractAlbumId(url);
+                if (!albumId) {
+                    console.error('Could not extract album ID from URL:', url);
+                    return { index, albumData: null, originalUrl: url };
+                }
+
+                const albumData = await fetchAlbumData(albumId);
+                return { index, albumData, originalUrl: url };
+            });
+
+            // Wait for all albums to load
+            const results = await Promise.all(albumPromises);
+            
+            // Clear loading skeletons
+            albumGrid.innerHTML = '';
+            
+            // Add loaded albums
+            results.forEach(({ albumData, originalUrl }) => {
+                const albumElement = createAlbumElement(albumData, originalUrl);
+                albumGrid.appendChild(albumElement);
+            });
+
+            // Hide loading message
+            loadingMessage.style.display = 'none';
+        }
+
+        // Start loading albums when page loads
+        document.addEventListener('DOMContentLoaded', loadAlbums);
+    </script>
+</body>
+</html>
